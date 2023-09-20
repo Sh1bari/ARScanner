@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Theke/Desktop/java/TeleventAndroid/app/src/main/res/drawable/accepted.xml" value="0.1805" />
+        <entry key="..\:/Users/Theke/Desktop/java/TeleventAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1815" />
         <entry key="..\:/Users/Theke/Desktop/java/TeleventAndroid/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Theke/Desktop/java/TeleventAndroid/app/src/main/res/layout/custom_dialog.xml" value="0.33" />
+        <entry key="..\:/Users/Theke/Desktop/java/TeleventAndroid/app/src/main/res/layout/custom_toast.xml" value="0.2" />
+        <entry key="..\:/Users/Theke/Desktop/java/TeleventAndroid/app/src/main/res/layout/green_toast.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/Theke/Desktop/java/TeleventAndroid/app/src/main/res/layout/krugliye_ugli.xml" value="0.171875" />
+        <entry key="..\:/Users/Theke/Desktop/java/TeleventAndroid/app/src/main/res/layout/orange_toast.xml" value="0.17291666666666666" />
       </map>
     </option>
   </component>

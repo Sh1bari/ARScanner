@@ -33,7 +33,7 @@ public class QRCodeDecoder implements ImageAnalysis.Analyzer {
     @Override
     public void analyze(@NonNull ImageProxy image) {
 
-        @SuppressLint("UnsafeOptInUsageError")
+        @SuppressLint({"UnsafeOptInUsageError", "UnsafeExperimentalUsageError"})
         Image mediaImage = image.getImage();
 
         if(mediaImage != null){
