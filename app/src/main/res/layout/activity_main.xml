@@ -22,6 +22,6 @@
             android:layout_height="66dp" android:id="@+id/info"
             android:textColor="#000000" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="478dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="51dp"/>
+            android:layout_marginStart="51dp" android:text="ghbdtn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
