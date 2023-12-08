@@ -2,6 +2,7 @@ package com.example.tel_eventandroid;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.*;
 import android.media.Image;
@@ -26,6 +27,7 @@ import com.google.gson.Gson;
 import okhttp3.*;
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.example.tel_eventandroid.Adrenaline;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -38,6 +40,8 @@ import java.util.concurrent.Executors;
 public class MainActivity extends AppCompatActivity {
 
     private final int REQUEST_CODE_PERMISSIONS = 5555;
+
+    private boolean scanned = false;
     private Handler captureHandler = new Handler(Looper.getMainLooper());
     private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA"};
 
@@ -48,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+        scanned = false;
 
         mPreviewView = findViewById(R.id.camera);
 
@@ -99,8 +105,10 @@ public class MainActivity extends AppCompatActivity {
             // Получение данных из ImageProxy
             try {
                 // Вызов функции для отправки на сервер
-                Thread.sleep(1000);
-                sendPhotoBytesToServer(toBitmap(imageProxy.getImage()));
+                Thread.sleep(200);
+                if(!scanned) {
+                    sendPhotoBytesToServer(toBitmap(imageProxy.getImage()));
+                }
 
                 // Завершение анализа
                 imageProxy.close();
@@ -179,8 +187,12 @@ public class MainActivity extends AppCompatActivity {
                             boolean prediction = jsonResponse.getBoolean("prediction");
 
                             // Теперь у вас есть значение "prediction", которое вы можете использовать по вашему усмотрению
-                            if (prediction) {
-                                infoTextView.setText("Модель предсказала: true");
+                            if ((prediction) && !scanned) {
+                                scanned = true;
+                                Intent intent = new Intent(MainActivity.this, Adrenaline.class);
+                                // Выполнение перехода к новому Activity
+                                startActivity(intent);
+                                finish();
                             } else {
                                 infoTextView.setText("Модель предсказала: false");
                             }
