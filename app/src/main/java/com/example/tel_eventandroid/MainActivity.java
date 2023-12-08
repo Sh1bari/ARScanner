@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
         mPreviewView = findViewById(R.id.camera);
 
-        infoTextView = findViewById(R.id.info);
 
         if(allPermissionsGranted()){
             startCamera();
@@ -150,10 +149,6 @@ public class MainActivity extends AppCompatActivity {
         return rotateBitmap(bitmap, 90);
     }
     private void sendPhotoBytesToServer(Bitmap image){
-        runOnUiThread(() -> {
-            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
-        });
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         // Компрессия Bitmap в формат JPEG с качеством 100 (максимальное качество)
         image.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
@@ -189,12 +184,16 @@ public class MainActivity extends AppCompatActivity {
                             // Теперь у вас есть значение "prediction", которое вы можете использовать по вашему усмотрению
                             if ((prediction) && !scanned) {
                                 scanned = true;
+                                runOnUiThread(() -> {
+                                    Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                                    vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
+                                });
                                 Intent intent = new Intent(MainActivity.this, Adrenaline.class);
                                 // Выполнение перехода к новому Activity
                                 startActivity(intent);
                                 finish();
                             } else {
-                                infoTextView.setText("Модель предсказала: false");
+
                             }
 
                         } catch (JSONException e) {
